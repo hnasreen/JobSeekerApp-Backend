@@ -20,16 +20,16 @@ export const postApplication = async (req, res) => {
     }
 
     const { resume } = req.files;
-    const allowedFormats = ["application/pdf"];
-    if (!allowedFormats.includes(resume.mimetype)) {
-      return res.status(400).json({
-        success: false,
-        message: "Invalid file type. Please upload a PDF file.",
-      });
-    }
+    // const allowedFormats = ["application/pdf","image/jpg"];
+    // if (!allowedFormats.includes(resume.mimetype)) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "Invalid file type. Please upload a PDF file.",
+    //   });
+    // }
 
     const cloudinaryResponse = await cloudinary.uploader.upload(resume.tempFilePath, {
-        resource_type: "raw" 
+        resource_type: "pdf" 
       });
 
       console.log("cloudinary Response:",cloudinaryResponse)
